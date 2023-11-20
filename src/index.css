@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  @apply box-border
+}
+
+body{
+  background-color: #000000;
+  font-family: 'Inter', sans-serif;
+}
+
+h6{
+  color: #FFFFFF;
+}
+
+p{
+  color: #FFFFFF;
+}
