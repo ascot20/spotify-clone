@@ -18,3 +18,20 @@ h6,h3,h1{
 p{
   color: #FFFFFF;
 }
+
+::-webkit-scrollbar{
+  background-color: transparent;
+  width: 2px;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #888;
+
+}
+
+@layer utilities {
+ .container-snap::-webkit-scrollbar{
+    display: none;
+  }
+
+}

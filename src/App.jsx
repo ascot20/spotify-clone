@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { setToken } from "./services/spotifyApi"
 import Skeleton from "./components/Skeleton"
 import ErrorPage from "./pages/ErrorPage"
+import Player from "./components/Player"
 
 
 function App() {
@@ -43,8 +44,9 @@ function App() {
   }
 
   return (
-    <div className="h-screen">
+    <div className="relative h-screen border">
       <Home />
+      <Player/>
     </div>
   )
 }

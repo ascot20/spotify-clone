@@ -5,7 +5,7 @@ import Playlists from "./Playlists"
 
 function LibraryNav() {
   return (
-    <div className="bg-[#121212] p-2 rounded mt-2 h-[85%]">
+    <div className="bg-[#121212] p-2 rounded-md mt-2 h-[85%]">
       <div className="flex m-4 items-center justify-between">
         <div className="flex items-center transition ease-in hover:opacity-100 opacity-50 cursor-pointer duration-300">
           <FontAwesomeIcon icon={faFloppyDisk} style={{ color: "#ffffff", }} />

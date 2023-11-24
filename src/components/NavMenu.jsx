@@ -6,7 +6,7 @@ function NavMenu() {
   const [active, setActive] = useState('home')
 
   return (
-    <div className=" bg-[#121212] p-2 rounded">
+    <div className=" bg-[#121212] p-2 rounded-md">
       <div className=" flex m-4 items-center hover:cursor-pointer" style={active === 'home' ? {} : { opacity: 0.5 }} onClick={()=>{setActive('home')}}>
         <FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff", }} />
         <h6 className=" font-medium ml-4">Home</h6>

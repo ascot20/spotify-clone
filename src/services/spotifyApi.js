@@ -36,3 +36,12 @@ export const getCategories = async () => {
   console.log(response.data)
   return response.data
 }
+
+export const getCategoryPlaylists = async (id) =>{
+  console.log(id)
+  const url = `https://api.spotify.com/v1/browse/categories/${id}/playlists`
+
+  const response = await axios.get(url, config)
+  console.log(response.data.playlists.items)
+  return response.data.playlists.items
+}
