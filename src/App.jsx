@@ -44,7 +44,7 @@ function App() {
   }
 
   return (
-    <div className="relative h-screen border">
+    <div className="relative h-screen">
       <Home />
       <Player/>
     </div>

@@ -1,8 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
-import { getCategoryPlaylists } from "../services/spotifyApi"
+import { getCategoryPlaylists, getPlaylistTracks } from "../services/spotifyApi"
 import Skeleton from "./Skeleton"
+import { useDispatch } from "react-redux"
+import { addTracks } from "../redux/reducers/playlistTracksReducer"
+import { resetTrack } from "../redux/reducers/currentTrackReducer"
+import { showDisplay } from "../redux/reducers/displayTrackReducer"
 
 function CategoryPlaylists({ id }) {
+  const dispatch = useDispatch()
   const { data, isLoading } = useQuery({
     queryKey: ['categoryPlaylists', id],
     queryFn: () => getCategoryPlaylists(id)
@@ -10,12 +15,24 @@ function CategoryPlaylists({ id }) {
   if (isLoading) {
     return <Skeleton />
   }
+
+  const handleGetTracks = async (id) => {
+    try {
+      const response = await getPlaylistTracks(id)
+      dispatch(addTracks(response))
+      dispatch(resetTrack())
+      dispatch(showDisplay())
+    } catch (error) {
+      throw new Error(error)
+    }
+
+  }
   return (
     <div className=" flex space-x-4 overflow-x-auto container-snap">
       {
         data.map(playlist => (
           playlist &&
-          <div key={playlist.id} className="bg-[#181818] p-4 rounded-lg cursor-pointer transition ease-out hover:bg-[#282828]  duration-500">
+          <div key={playlist.id} className="bg-[#181818] p-4 rounded-lg cursor-pointer transition ease-out hover:bg-[#282828]  duration-500" onClick={() => handleGetTracks(playlist.id)}>
             <div className=" w-32">
               <img src={playlist.images[0].url} alt="image" className=" rounded-lg" />
             </div>
