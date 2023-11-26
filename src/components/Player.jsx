@@ -10,14 +10,6 @@ function Player() {
   const tracks = useSelector(state=>state.playlistTracks)
   const currentTrack = useSelector(state=>state.currentTrack)
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.load();
-      audioRef.current.play();
-    }
-  }, [currentTrack])
-
   const handleNext = () => {
     if(currentTrack >= tracks.length - 1){
       dispatch(resetTrack())
@@ -28,7 +20,7 @@ function Player() {
 
   return (
     <div className="absolute left-0 bottom-0 h-[10%] w-full">
-      <div className="flex justify-center h-full">
+      <div className="flex flex-col justify-center items-center h-full space-y-2">
         <audio src={tracks.length > 0?tracks[currentTrack].track.preview_url: undefined} ref={audioRef} onEnded={handleNext}></audio>
         <Controls audioRef={audioRef}/>
         <ProgressBar />

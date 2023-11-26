@@ -16,7 +16,7 @@ function Controls({audioRef}) {
     }else{
       audioRef.current.pause()
     }
-  },[isPlaying, audioRef])
+  },[isPlaying, audioRef, currentTrackIndex,trackLength])
   
   const togglePlayPause = () => {
     setIsPlaying((prev) => !prev)
@@ -39,7 +39,7 @@ function Controls({audioRef}) {
   }
 
   return (
-    <div className="flex space-x-8 mt-3 h-9">
+    <div className="flex space-x-8 mt-3 h-9 ">
       <button className="py-1 opacity-50 hover:opacity-100 h-8" onClick={handlePrevious}>
         <FontAwesomeIcon icon={faBackwardStep} style={{ color: "#ffffff", }} size="xl" />
       </button>

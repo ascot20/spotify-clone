@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { addTracks } from "../redux/reducers/playlistTracksReducer"
 import { resetTrack } from "../redux/reducers/currentTrackReducer"
 import { showDisplay } from "../redux/reducers/displayTrackReducer"
+import {setName} from "../redux/reducers/playlistNameReducer.js"
 
 function CategoryPlaylists({ id }) {
   const dispatch = useDispatch()
@@ -16,12 +17,13 @@ function CategoryPlaylists({ id }) {
     return <Skeleton />
   }
 
-  const handleGetTracks = async (id) => {
+  const handleGetTracks = async (id,name) => {
     try {
       const response = await getPlaylistTracks(id)
       dispatch(addTracks(response))
       dispatch(resetTrack())
       dispatch(showDisplay())
+      dispatch(setName(name))
     } catch (error) {
       throw new Error(error)
     }
@@ -32,7 +34,7 @@ function CategoryPlaylists({ id }) {
       {
         data.map(playlist => (
           playlist &&
-          <div key={playlist.id} className="bg-[#181818] p-4 rounded-lg cursor-pointer transition ease-out hover:bg-[#282828]  duration-500" onClick={() => handleGetTracks(playlist.id)}>
+          <div key={playlist.id} className="bg-[#181818] p-4 rounded-lg cursor-pointer transition ease-out hover:bg-[#282828]  duration-500" onClick={() => handleGetTracks(playlist.id,playlist.name)}>
             <div className=" w-32">
               <img src={playlist.images[0].url} alt="image" className=" rounded-lg" />
             </div>

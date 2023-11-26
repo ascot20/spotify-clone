@@ -16,7 +16,7 @@ function MainSection() {
 
 
   return (
-    <div className=" basis-[45%] bg-[#121212] grow-[5] mt-2 mr-2 rounded-md overflow-y-auto">
+    <div className=" basis-[55%] bg-[#121212] grow-[5] rounded-md overflow-y-auto">
       <NavBar/>
       <Categories/>
     </div>
