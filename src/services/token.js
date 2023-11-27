@@ -8,7 +8,7 @@ export const getAccessToken = async (clientId, code) => {
   params.append('client_id', clientId)
   params.append('grant_type', 'authorization_code')
   params.append('code', code)
-  params.append('redirect_uri', 'http://localhost:5173')
+  params.append('redirect_uri', 'https://spotify-clone-lime-tau.vercel.app/')
   params.append('code_verifier', verifier)
 
   const config = {
@@ -34,7 +34,7 @@ export async function redirectToAuthCodeFlow(clientId) {
   const params = new URLSearchParams()
   params.append('client_id', clientId)
   params.append('response_type', 'code')
-  params.append('redirect_uri', 'http://localhost:5173')
+  params.append('redirect_uri', 'https://spotify-clone-lime-tau.vercel.app/')
   params.append('scope', 'user-read-private user-read-email')
   params.append('code_challenge_method', 'S256')
   params.append('code_challenge', challenge)

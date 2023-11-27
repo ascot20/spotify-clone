@@ -15,7 +15,7 @@ function Home() {
     return <Skeleton/>
   }
   return (
-    <div className="flex h-[90%] space-x-2 p-2">
+    <div className="flex flex-col sm:flex-row h-[90%] space-x-2 p-2">
       <SideSection/>
       <MainSection/>
       <DisplayTrack/>
