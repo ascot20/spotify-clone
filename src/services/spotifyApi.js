@@ -47,6 +47,5 @@ export const getPlaylistTracks = async (id) => {
   const url = `https://api.spotify.com/v1/playlists/${id}/tracks`
 
   const response = await axios.get(url, config)
-  console.log(response.data.items)
   return response.data.items
 }
