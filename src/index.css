@@ -30,7 +30,7 @@ p{
 }
 
 input[type="range"]{
-  --range-progress:50%;
+  --range-progress:0%;
   -webkit-appearance:none;
   background: #4d4d4d;
   position: relative;
@@ -74,5 +74,6 @@ input[type="range"]:active::-webkit-slider-thumb {
  .container-snap::-webkit-scrollbar{
     display: none;
   }
+
 
 }

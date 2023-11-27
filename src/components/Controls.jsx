@@ -1,22 +1,36 @@
 import { faBackwardStep, faForwardStep, faPause, faPlay } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { nextTrack, previousTrack, resetTrack } from "../redux/reducers/currentTrackReducer"
 
-function Controls({audioRef}) {
+function Controls({audioRef,progressBarRef,duration,setTimeProgress}) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const playAnimationRef = useRef()
   const dispatch = useDispatch()
   const trackLength = useSelector(state=>state.playlistTracks?state.playlistTracks.length:0)
   const currentTrackIndex = useSelector(state=>state.currentTrack)
 
+  const repeat = useCallback(() => {
+    const currentTime = audioRef.current.currentTime
+    setTimeProgress(currentTime)
+    progressBarRef.current.value = currentTime
+    progressBarRef.current.style.setProperty(
+      '--range-progress',
+      `${(progressBarRef.current.value/duration)*100}%`
+    )
+    playAnimationRef.current = requestAnimationFrame(repeat)
+  }, [audioRef,duration,progressBarRef,setTimeProgress])
+
   useEffect(()=>{
     if(isPlaying){
       audioRef.current.play()
+      playAnimationRef.current = requestAnimationFrame(repeat)
     }else{
       audioRef.current.pause()
+      cancelAnimationFrame(playAnimationRef.current)
     }
-  },[isPlaying, audioRef, currentTrackIndex,trackLength])
+  },[isPlaying, audioRef, currentTrackIndex,trackLength,repeat])
   
   const togglePlayPause = () => {
     setIsPlaying((prev) => !prev)

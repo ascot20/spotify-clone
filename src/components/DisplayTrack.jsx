@@ -11,7 +11,7 @@ function DisplayTrack() {
   const currentTrack = tracks[currentTrackIndex]
   const dispatch = useDispatch()
   return (
-    <div className={`${display} bg-[#121212] p-0 overflow-hidden rounded-md h-min `}>
+    <div className={`${display} bg-[#121212] p-0 overflow-hidden rounded-md`}>
       <div className="m-4 flex flex-col space-y-4 max-w-sm h-auto">
         <div className="flex justify-between">
           <p className="line-clamp-1 text-clip font-semibold">{playlistName}</p>
